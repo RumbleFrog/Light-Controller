@@ -20,6 +20,16 @@ async function wakeup() {
     }
 }
 
+async function reset() {
+    Red.pwmWrite(0);
+    Green.pwmWrite(0);
+    Blue.pwmWrite(0);
+}
+
 new CronJob('00 30 5 * * 1-5', wakeup, () => {
     console.log('Starting wakeup');
+}, true, 'America/New_York');
+
+new CronJob('00 20 7 * * 1-5', reset, () => {
+    console.log('Resetting');
 }, true, 'America/New_York');
