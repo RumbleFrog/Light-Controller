@@ -20,4 +20,6 @@ async function wakeup() {
     }
 }
 
-new CronJob('00 30 5 * * 1-5', wakeup, () => {}, true, 'America/New_York');
+new CronJob('00 30 5 * * 1-5', wakeup, () => {
+    console.log('Starting wakeup');
+}, true, 'America/New_York');
