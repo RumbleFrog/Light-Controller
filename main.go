@@ -34,7 +34,7 @@ func main() {
 	light.G.Write(0)
 	light.B.Write(0)
 
-	api.Register()
+	go api.Register()
 
 	log.Debug.Enable()
 

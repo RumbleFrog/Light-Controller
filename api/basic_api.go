@@ -19,13 +19,13 @@ type Payload struct {
 
 // Register - Starts the basic API server
 func Register() {
-	log.Print("Test")
+	APIMux := http.NewServeMux()
 
-	http.HandleFunc("/", ColorChange)
-
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	APIMux.HandleFunc("/", ColorChange)
 
 	log.Print("Serving at 8080")
+
+	log.Fatal(http.ListenAndServe(":8080", APIMux))
 }
 
 // ColorChange - Handles default route
