@@ -17,9 +17,9 @@ func NewBedLight(info accessory.Info) *BedLight {
 	acc.Accessory = accessory.New(info, accessory.TypeLightbulb)
 	acc.RGBLight = service.NewRGBLight()
 
-	acc.RGBLight.Red.SetValue(255)
-	acc.RGBLight.Green.SetValue(255)
-	acc.RGBLight.Blue.SetValue(255)
+	acc.RGBLight.Red.SetValue(0)
+	acc.RGBLight.Green.SetValue(0)
+	acc.RGBLight.Blue.SetValue(0)
 
 	acc.AddService(acc.RGBLight.Service)
 
