@@ -6,7 +6,7 @@ import (
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
 	bla "github.com/rumblefrog/light-controller/accessory"
-	"github.com/rumblefrog/light-controller/http"
+	"github.com/rumblefrog/light-controller/api"
 	"github.com/rumblefrog/light-controller/light"
 	rpio "github.com/stianeikeland/go-rpio"
 )
@@ -33,6 +33,8 @@ func main() {
 	light.R.Write(0)
 	light.G.Write(0)
 	light.B.Write(0)
+
+	api.Register()
 
 	log.Debug.Enable()
 
@@ -63,5 +65,4 @@ func main() {
 	})
 
 	t.Start()
-	http.Register()
 }
