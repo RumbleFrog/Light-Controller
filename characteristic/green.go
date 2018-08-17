@@ -16,6 +16,7 @@ type Green struct {
 func NewGreen() *Green {
 	char := characteristic.NewInt(TypeGreen)
 	char.Format = characteristic.FormatUInt8
+	char.Perms = []string{characteristic.PermRead, characteristic.PermWrite, characteristic.PermEvents}
 
 	char.SetMinValue(0)
 	char.SetMaxValue(255)

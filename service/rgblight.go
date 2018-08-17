@@ -5,11 +5,11 @@ import (
 	"github.com/rumblefrog/light-controller/characteristic"
 )
 
-// TypeBedLight - Index?
-const TypeBedLight = "C89"
+// TypeRGBLight - Index?
+const TypeRGBLight = "C89"
 
-// BedLight - Info related to operating the light
-type BedLight struct {
+// RGBLight - Info related to operating the light
+type RGBLight struct {
 	*service.Service
 
 	Red   *characteristic.Red
@@ -17,10 +17,10 @@ type BedLight struct {
 	Blue  *characteristic.Blue
 }
 
-// NewBedLight - Creates a new handle
-func NewBedLight() *BedLight {
-	svc := BedLight{}
-	svc.Service = service.New(TypeBedLight)
+// NewRGBLight - Creates a new handle
+func NewRGBLight() *RGBLight {
+	svc := RGBLight{}
+	svc.Service = service.New(TypeRGBLight)
 
 	svc.Red = characteristic.NewRed()
 	svc.AddCharacteristic(svc.Red.Characteristic)

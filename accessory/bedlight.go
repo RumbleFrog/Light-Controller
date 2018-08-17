@@ -8,20 +8,20 @@ import (
 // BedLight - BedLight Accessory
 type BedLight struct {
 	*accessory.Accessory
-	BedLight *service.BedLight
+	RGBLight *service.RGBLight
 }
 
 // NewBedLight - Returns the BedLight accessory
 func NewBedLight(info accessory.Info) *BedLight {
 	acc := BedLight{}
-	acc.Accessory = accessory.New(info, accessory.TypeOther)
-	acc.BedLight = service.NewBedLight()
+	acc.Accessory = accessory.New(info, accessory.TypeLightbulb)
+	acc.RGBLight = service.NewRGBLight()
 
-	acc.BedLight.Red.SetValue(255)
-	acc.BedLight.Green.SetValue(255)
-	acc.BedLight.Blue.SetValue(255)
+	acc.RGBLight.Red.SetValue(255)
+	acc.RGBLight.Green.SetValue(255)
+	acc.RGBLight.Blue.SetValue(255)
 
-	acc.AddService(acc.BedLight.Service)
+	acc.AddService(acc.RGBLight.Service)
 
 	return &acc
 }
