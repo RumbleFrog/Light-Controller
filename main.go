@@ -6,6 +6,7 @@ import (
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
 	bla "github.com/rumblefrog/light-controller/accessory"
+	"github.com/rumblefrog/light-controller/http"
 	"github.com/rumblefrog/light-controller/light"
 	rpio "github.com/stianeikeland/go-rpio"
 )
@@ -62,4 +63,5 @@ func main() {
 	})
 
 	t.Start()
+	http.Register()
 }
