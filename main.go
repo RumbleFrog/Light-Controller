@@ -6,14 +6,8 @@ import (
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
 	bla "github.com/rumblefrog/light-controller/accessory"
+	"github.com/rumblefrog/light-controller/light"
 	rpio "github.com/stianeikeland/go-rpio"
-)
-
-// RGB Pins
-var (
-	R rpio.Pin
-	G rpio.Pin
-	B rpio.Pin
 )
 
 func main() {
@@ -26,18 +20,18 @@ func main() {
 
 	defer rpio.Close()
 
-	R = rpio.Pin(27)
-	R.Mode(rpio.Output)
+	light.R = rpio.Pin(27)
+	light.R.Mode(rpio.Output)
 
-	G = rpio.Pin(17)
-	G.Mode(rpio.Output)
+	light.G = rpio.Pin(17)
+	light.G.Mode(rpio.Output)
 
-	B = rpio.Pin(22)
-	B.Mode(rpio.Output)
+	light.B = rpio.Pin(22)
+	light.B.Mode(rpio.Output)
 
-	R.Write(0)
-	G.Write(0)
-	B.Write(0)
+	light.R.WriteC(0)
+	light.G.WriteC(0)
+	light.B.WriteC(0)
 
 	log.Debug.Enable()
 
