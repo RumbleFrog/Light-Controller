@@ -36,7 +36,3 @@
 [[constraint]]
   name = "github.com/stianeikeland/go-rpio"
   version = "4.1.0"
-
-[[constraint]]
-  name = "github.com/lucasb-eyer/go-colorful"
-  version = "1.0.0"

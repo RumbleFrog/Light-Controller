@@ -127,6 +127,9 @@
   input-imports = [
     "github.com/brutella/hc",
     "github.com/brutella/hc/accessory",
+    "github.com/brutella/hc/characteristic",
+    "github.com/brutella/hc/log",
+    "github.com/brutella/hc/service",
     "github.com/stianeikeland/go-rpio",
   ]
   solver-name = "gps-cdcl"
