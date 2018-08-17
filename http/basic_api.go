@@ -38,10 +38,12 @@ func Register() {
 			log.Panic("Unable to unmarshal JSON data")
 		}
 
-		light.R.WriteC(Content.R)
-		light.G.WriteC(Content.G)
-		light.B.WriteC(Content.B)
+		light.R.Write(Content.R)
+		light.G.Write(Content.G)
+		light.B.Write(Content.B)
 
 		w.WriteHeader(http.StatusNoContent)
 	})
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

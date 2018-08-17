@@ -8,10 +8,3 @@ var (
 	G rpio.Pin
 	B rpio.Pin
 )
-
-// WriteC - Sets a pin's color
-func (p rpio.Pin) WriteC(v rpio.State) {
-	p.Write(v)
-
-	// Broadcast to whatever needs a state update
-}

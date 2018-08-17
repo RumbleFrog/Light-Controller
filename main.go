@@ -29,9 +29,9 @@ func main() {
 	light.B = rpio.Pin(22)
 	light.B.Mode(rpio.Output)
 
-	light.R.WriteC(0)
-	light.G.WriteC(0)
-	light.B.WriteC(0)
+	light.R.Write(0)
+	light.G.Write(0)
+	light.B.Write(0)
 
 	log.Debug.Enable()
 
