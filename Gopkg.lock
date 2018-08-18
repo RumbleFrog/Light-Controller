@@ -59,20 +59,20 @@
   revision = "c20e083e31230b84ffa23c5d2fb0bc55f5292681"
 
 [[projects]]
+  digest = "1:c65a16ac77d0b1aefc7009cabb6ac5ad05def02025f5be85f450c03f52cc6f86"
+  name = "github.com/lucasb-eyer/go-colorful"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "345fbb3dbcdb252d9985ee899a84963c0fa24c82"
+  version = "v1.0"
+
+[[projects]]
   digest = "1:463e4140189f8194f9121ca1c7fe3b8e9e9a2ab3d949b43c835c21034927dc62"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = "UT"
   revision = "5a2b9fab83ff0f8bfc99684bd5f43a37abe560f1"
   version = "v1.0.8"
-
-[[projects]]
-  digest = "1:9edc0b172ea0685d33efea40c0d2e6991b2ffc71d5fde5c39dfba8e3adee3c05"
-  name = "github.com/stianeikeland/go-rpio"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "3abdd2207d33843c1c3fbea540bdf07990075c03"
-  version = "4.1.0"
 
 [[projects]]
   branch = "master"
@@ -127,10 +127,8 @@
   input-imports = [
     "github.com/brutella/hc",
     "github.com/brutella/hc/accessory",
-    "github.com/brutella/hc/characteristic",
     "github.com/brutella/hc/log",
-    "github.com/brutella/hc/service",
-    "github.com/stianeikeland/go-rpio",
+    "github.com/lucasb-eyer/go-colorful",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

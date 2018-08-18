@@ -7,14 +7,13 @@ import (
 	"net/http"
 
 	"github.com/rumblefrog/light-controller/light"
-	rpio "github.com/stianeikeland/go-rpio"
 )
 
 // Payload - Basic color changing payload
 type Payload struct {
-	R rpio.State `json:"r"`
-	G rpio.State `json:"g"`
-	B rpio.State `json:"b"`
+	R int `json:"r"`
+	G int `json:"g"`
+	B int `json:"b"`
 }
 
 // Register - Starts the basic API server
@@ -48,9 +47,11 @@ func ColorChange(w http.ResponseWriter, r *http.Request) {
 		log.Panic("Unable to unmarshal JSON data")
 	}
 
-	light.R.Write(Content.R)
-	light.G.Write(Content.G)
-	light.B.Write(Content.B)
+	light.WriteAll(
+		float64(Content.R)/255.0,
+		float64(Content.G)/255.0,
+		float64(Content.B)/255.0,
+	)
 
 	w.WriteHeader(http.StatusNoContent)
 }

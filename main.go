@@ -2,54 +2,50 @@ package main
 
 import (
 	"github.com/brutella/hc/log"
+	colorful "github.com/lucasb-eyer/go-colorful"
 
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
-	bla "github.com/rumblefrog/light-controller/accessory"
 	"github.com/rumblefrog/light-controller/api"
 	"github.com/rumblefrog/light-controller/light"
-	rpio "github.com/stianeikeland/go-rpio"
 )
 
+var acc *accessory.Lightbulb
+
 func main() {
-
-	err := rpio.Open()
-
-	if err != nil {
-		log.Info.Panic("Unable to open RPIO pins")
-	}
-
-	defer rpio.Close()
-
-	light.R = rpio.Pin(27)
-	light.R.Mode(rpio.Output)
-
-	light.G = rpio.Pin(17)
-	light.G.Mode(rpio.Output)
-
-	light.B = rpio.Pin(22)
-	light.B.Mode(rpio.Output)
-
-	light.R.Write(0)
-	light.G.Write(0)
-	light.B.Write(0)
-
 	go api.Register()
 
 	log.Debug.Enable()
 
-	acc := bla.NewBedLight(accessory.Info{
+	acc = accessory.NewLightbulb(accessory.Info{
 		Name:         "Bed Light",
 		SerialNumber: "ZBed1",
 		Manufacturer: "Z",
 		Model:        "ZBed",
 	})
 
-	acc.RGBLight.Green.OnValueRemoteUpdate(func(v int) {
-		log.Info.Print(v)
+	acc.Lightbulb.On.OnValueRemoteUpdate(func(v bool) {
+		if v == false {
+			light.WriteAll(0.0, 0.0, 0.0)
+		} else {
+			updateLight()
+		}
+	})
+
+	acc.Lightbulb.Brightness.OnValueRemoteUpdate(func(v int) {
+		updateLight()
+	})
+
+	acc.Lightbulb.Saturation.OnValueRemoteUpdate(func(v float64) {
+		updateLight()
+	})
+
+	acc.Lightbulb.Hue.OnValueRemoteUpdate(func(v float64) {
+		updateLight()
 	})
 
 	config := hc.Config{
+		Port:        "38631",
 		Pin:         "00011019",
 		StoragePath: "./db",
 	}
@@ -65,4 +61,24 @@ func main() {
 	})
 
 	t.Start()
+}
+
+func updateLight() {
+	R, G, B := colorful.Hsl(
+		acc.Lightbulb.Hue.GetValue(),
+		acc.Lightbulb.Saturation.GetValue(),
+		float64(acc.Lightbulb.Brightness.GetValue()),
+	).Clamped().RGB255()
+
+	log.Debug.Printf("Colors: %d %d %d", R, G, B)
+
+	log.Debug.Printf("%f", float64(R)/255.0)
+	log.Debug.Printf("%f", float64(G)/255.0)
+	log.Debug.Printf("%f", float64(B)/255.0)
+
+	light.WriteAll(
+		float64(R)/255.0,
+		float64(G)/255.0,
+		float64(B)/255.0,
+	)
 }
