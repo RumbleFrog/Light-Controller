@@ -15,8 +15,6 @@ var acc *accessory.Lightbulb
 func main() {
 	go api.Register()
 
-	log.Debug.Enable()
-
 	acc = accessory.NewLightbulb(accessory.Info{
 		Name:         "Bed Light",
 		SerialNumber: "ZBed1",
@@ -64,17 +62,11 @@ func main() {
 }
 
 func updateLight() {
-	R, G, B := colorful.Hsl(
+	R, G, B := colorful.Hsv(
 		acc.Lightbulb.Hue.GetValue(),
-		acc.Lightbulb.Saturation.GetValue(),
-		float64(acc.Lightbulb.Brightness.GetValue()),
-	).Clamped().RGB255()
-
-	log.Debug.Printf("Colors: %d %d %d", R, G, B)
-
-	log.Debug.Printf("%f", float64(R)/255.0)
-	log.Debug.Printf("%f", float64(G)/255.0)
-	log.Debug.Printf("%f", float64(B)/255.0)
+		acc.Lightbulb.Saturation.GetValue()/100.0,
+		float64(acc.Lightbulb.Brightness.GetValue())/100.0,
+	).RGB255()
 
 	light.WriteAll(
 		float64(R)/255.0,
