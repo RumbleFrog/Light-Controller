@@ -75,6 +75,14 @@
   version = "v1.0.8"
 
 [[projects]]
+  digest = "1:ed615c5430ecabbb0fb7629a182da65ecee6523900ac1ac932520860878ffcad"
+  name = "github.com/robfig/cron"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "b41be1df696709bb6395fe435af20370037c0b4c"
+  version = "v1.1"
+
+[[projects]]
   branch = "master"
   digest = "1:4203ff9f9475785fe17a29ce1f4e72098d770606a14b6559e8ddc3bd3f579f5e"
   name = "github.com/tadglines/go-pkgs"
@@ -129,6 +137,7 @@
     "github.com/brutella/hc/accessory",
     "github.com/brutella/hc/log",
     "github.com/lucasb-eyer/go-colorful",
+    "github.com/robfig/cron",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

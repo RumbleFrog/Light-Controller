@@ -36,3 +36,7 @@
 [[constraint]]
   name = "github.com/lucasb-eyer/go-colorful"
   version = "1.0.0"
+
+[[constraint]]
+  name = "github.com/robfig/cron"
+  version = "1.1.0"

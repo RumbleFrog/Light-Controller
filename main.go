@@ -1,8 +1,11 @@
 package main
 
 import (
+	"time"
+
 	"github.com/brutella/hc/log"
 	colorful "github.com/lucasb-eyer/go-colorful"
+	"github.com/robfig/cron"
 
 	"github.com/brutella/hc"
 	"github.com/brutella/hc/accessory"
@@ -13,6 +16,11 @@ import (
 var acc *accessory.Lightbulb
 
 func main() {
+	c := cron.New()
+
+	c.AddFunc("00 30 5 * * 1-5", startWakeUp)
+	c.AddFunc("00 20 7 * * 1-5", stopWakeUp)
+
 	go api.Register()
 
 	acc = accessory.NewLightbulb(accessory.Info{
@@ -59,6 +67,22 @@ func main() {
 	})
 
 	t.Start()
+}
+
+func startWakeUp() {
+	for i := 0; i > 76; i++ {
+		light.WriteAll(
+			float64(i)/255.0,
+			float64(i)/255.0,
+			float64(i)/255.0,
+		)
+
+		time.Sleep(47 * time.Second)
+	}
+}
+
+func stopWakeUp() {
+	light.WriteAll(0.0, 0.0, 0.0)
 }
 
 func updateLight() {
