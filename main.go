@@ -21,6 +21,8 @@ func main() {
 	c.AddFunc("00 30 5 * * 1-5", startWakeUp)
 	c.AddFunc("00 20 7 * * 1-5", stopWakeUp)
 
+	c.Start()
+
 	go api.Register()
 
 	acc = accessory.NewLightbulb(accessory.Info{
