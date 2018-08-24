@@ -72,7 +72,7 @@ func main() {
 }
 
 func startWakeUp() {
-	for i := 0; i > 76; i++ {
+	for i := 0; i < 76; i++ {
 		light.WriteAll(
 			float64(i)/255.0,
 			float64(i)/255.0,
